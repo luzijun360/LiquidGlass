@@ -5,7 +5,7 @@ Thanks for wanting to contribute! This project aims to stay minimal and approach
 ## Getting started
 
 ```bash
-git clone https://github.com/<you>/LiquidGlass.git
+git clone https://github.com/luzijun360/LiquidGlass.git
 cd LiquidGlass
 bash build.sh          # or: make
 open dist/LiquidGlass.app  # run without installing

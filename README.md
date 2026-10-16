@@ -50,7 +50,7 @@ LiquidGlass/
 ### Quick Start
 
 ```bash
-git clone https://github.com/<you>/LiquidGlass.git
+git clone https://github.com/luzijun360/LiquidGlass.git
 cd LiquidGlass
 bash build.sh
 
@@ -110,7 +110,7 @@ LiquidGlass \u662f macOS 26+ \u4e0a\u7684\u201c\u7eaf\u6db2\u6001\u73bb\u7483\u2
 ### \u5feb\u901f\u5f00\u59cb
 
 ```bash
-git clone https://github.com/<you>/LiquidGlass.git
+git clone https://github.com/luzijun360/LiquidGlass.git
 cd LiquidGlass
 bash build.sh
 pkill -x LiquidGlass 2>/dev/null; true
