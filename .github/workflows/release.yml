@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: macos-14
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: bash build.sh
+      - name: Create zip
+        run: |
+          cd dist
+          ditto -c -k --sequesterRsrc --keepParent LiquidGlass.app LiquidGlass-${{ github.ref_name }}.zip
+          ls -lh *.zip
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/LiquidGlass-*.zip
+          generate_release_notes: true

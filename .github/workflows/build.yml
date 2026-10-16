@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show toolchain
+        run: |
+          swiftc --version
+          xcode-select -p || true
+          sw_vers
+      - name: Build
+        run: bash build.sh
+      - name: Verify bundle
+        run: |
+          test -d dist/LiquidGlass.app
+          ls -R dist/LiquidGlass.app
+          codesign -dv dist/LiquidGlass.app 2>&1 || true
+          codesign --verify --deep --strict dist/LiquidGlass.app 2>&1 || true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LiquidGlass-app
+          path: dist/LiquidGlass.app
+          if-no-files-found: error
